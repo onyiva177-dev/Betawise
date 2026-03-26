@@ -70,7 +70,7 @@ export const useBetSlip = create<BetSlipState>()(
     }),
     {
       name: 'betawise-slip',
-      partialise: (s) => ({ selections: s.selections, stake: s.stake }),
+      partialize: (s) => ({ selections: s.selections, stake: s.stake }),
     }
   )
 )
