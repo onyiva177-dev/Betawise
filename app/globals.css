@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* BetaWise dark color system */
+  --bg-base:      #07090f;
+  --bg-surface:   #0d1120;
+  --bg-elevated:  #131929;
+  --bg-border:    #1e2640;
+
+  --accent-gold:  #f5c518;
+  --accent-green: #00d68f;
+  --accent-red:   #ff4d4d;
+  --accent-blue:  #3b82f6;
+
+  --text-primary:   #f0f4ff;
+  --text-secondary: #8492b4;
+  --text-muted:     #4a5578;
+
+  --font-display: var(--font-display), 'Barlow Condensed', system-ui;
+  --font-body:    var(--font-body), 'Inter', system-ui;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── Typography ─────── */
+.font-display { font-family: var(--font-display); }
+
+/* ── Scrollbars ─────── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb { background: var(--bg-border); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ── Utilities ──────── */
+@layer utilities {
+  .bg-base      { background-color: var(--bg-base); }
+  .bg-surface   { background-color: var(--bg-surface); }
+  .bg-elevated  { background-color: var(--bg-elevated); }
+  .border-panel { border-color: var(--bg-border); }
+
+  .text-primary   { color: var(--text-primary); }
+  .text-secondary { color: var(--text-secondary); }
+  .text-muted-custom { color: var(--text-muted); }
+
+  .text-gold  { color: var(--accent-gold); }
+  .text-green { color: var(--accent-green); }
+  .text-red   { color: var(--accent-red); }
+
+  .glow-gold  { box-shadow: 0 0 20px rgba(245,197,24,0.25); }
+  .glow-green { box-shadow: 0 0 20px rgba(0,214,143,0.2); }
+
+  .gradient-gold {
+    background: linear-gradient(135deg, #f5c518 0%, #e8a000 100%);
+  }
+
+  .gradient-dark {
+    background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-base) 100%);
+  }
+
+  .panel {
+    background: var(--bg-surface);
+    border: 1px solid var(--bg-border);
+    border-radius: 12px;
+  }
+}
+
+/* ── Animations ─────── */
+@keyframes pulse-gold {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes slide-up {
+  from { transform: translateY(12px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.animate-slide-up { animation: slide-up 0.25s ease forwards; }
+.animate-fade-in  { animation: fade-in 0.3s ease forwards; }
+
+/* ── Bet Slip ─────────── */
+.bet-slip-enter { animation: slide-up 0.2s ease forwards; }
+
+/* ── Odds Button ──────── */
+.odds-btn {
+  background: var(--bg-elevated);
+  border: 1px solid var(--bg-border);
+  border-radius: 8px;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+.odds-btn:hover {
+  border-color: var(--accent-gold);
+  background: rgba(245,197,24,0.08);
+}
+.odds-btn.selected {
+  background: rgba(245,197,24,0.15);
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 12px rgba(245,197,24,0.2);
+}
+.odds-btn.selected .odds-value {
+  color: var(--accent-gold);
+}
+
+/* ── Status badges ──── */
+.badge-upcoming { background: rgba(59,130,246,0.15); color: #60a5fa; }
+.badge-live     { background: rgba(0,214,143,0.15);  color: #00d68f; }
+.badge-finished { background: rgba(74,85,120,0.3);   color: #8492b4; }
+.badge-won      { background: rgba(0,214,143,0.15);  color: #00d68f; }
+.badge-lost     { background: rgba(255,77,77,0.15);  color: #ff6b6b; }
+.badge-pending  { background: rgba(245,197,24,0.15); color: #f5c518; }
